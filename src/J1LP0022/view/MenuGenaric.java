@@ -1,5 +1,5 @@
 
-package J1LP0022;
+package J1LP0022.view;
 import java.util.ArrayList;
 import java.util.Scanner;
 /**

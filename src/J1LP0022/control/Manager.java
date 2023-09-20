@@ -1,4 +1,11 @@
-package J1LP0022;
+package J1LP0022.control;
+import J1LP0022.model.Candidate;
+import J1LP0022.model.Experience;
+import J1LP0022.model.Fresher;
+import J1LP0022.model.Internship;
+import J1LP0022.validate.Input;
+import J1LP0022.validate.Validator;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 /**
@@ -48,7 +55,7 @@ public class Manager {
 
     public void searchCandidate() {
         printListNameCandidate();
-        String nameSearch = Input.enterString("Name",Validator.REGEX_FULL_NAME_VN);
+        String nameSearch = Input.enterString("Name",Validator.REGEX_FULL_NAME);
         int typeCandidate = Input.enterInt("Type Candidate",0,2);
         int count = 0;
         for (Candidate candidate : candidates) {

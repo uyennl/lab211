@@ -1,4 +1,7 @@
-package J1LP0022;
+package J1LP0022.control;
+
+import J1LP0022.view.Menu;
+
 /**
  * Uyen Nguyễn
  * */

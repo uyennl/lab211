@@ -1,4 +1,7 @@
-package J1LP0022;
+package J1LP0022.model;
+
+import J1LP0022.model.Candidate;
+
 /**
  * Uyen Nguyễn
  * */

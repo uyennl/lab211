@@ -1,4 +1,4 @@
-package J1LP0022;
+package J1LP0022.model;
 /**
  * Uyen Nguyễn
  * */
