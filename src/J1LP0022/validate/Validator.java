@@ -22,7 +22,7 @@ public static final String REGEX_PHONE_NUMBER = "(0[3|5|7|8|9])+([0-9]{8})";
     public static final String REGEX_EMAIL = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
     public static final String REGEX_QUESTION = "^y|^n";
     public static final String REGEX_PHONE_NUMBER_SEARCH = "09[0-9]{1}";
-    public static final String REGEX_RANK = "Excellence, Good, Fair, Poor";
+    public static final String[] REGEX_RANK = {"Excellence","Good","Fair","Poor"};
     public static final String REGEX_NOR = ".+";
     public static final String REGEX_FULL_NAME = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$";
     public static boolean checkRegex(String str, String regex) {

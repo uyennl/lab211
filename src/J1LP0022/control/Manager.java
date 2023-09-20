@@ -18,41 +18,45 @@ public class Manager {
     ArrayList<Candidate> candidates = new ArrayList<>();
 
     public void addCandidate(int type) {
-        String id = Input.enterString("Id", Validator.REGEX_ID, (i) -> {
-            for (Candidate c : candidates) {
-                if (c.getId().equals(i)) {
-                    return true;
+        boolean continueAdding = true;
+        while (continueAdding) {
+            String id = Input.enterString("Id", Validator.REGEX_ID, (i) -> {
+                for (Candidate c : candidates) {
+                    if (c.getId().equals(i)) {
+                        return true;
+                    }
                 }
+                return false;
+            });
+            String fistName = Input.enterString("Fist Name ", Validator.REGEX_FULL_NAME_VN);
+            String lastName = Input.enterString("Last Name", Validator.REGEX_FULL_NAME_VN);
+            int birthDate = Input.enterInt("Birthdate ", 1900, Calendar.getInstance().get(Calendar.YEAR));
+            String address = Input.enterString("Address", Validator.REGEX_NOR);
+            String phone = Input.enterString("Phone Number ", Validator.REGEX_PHONE_NUMBER);
+            String email = Input.enterString("Email ", Validator.REGEX_EMAIL);
+            switch (type) {
+                case 0:
+                    int yearExperience = Input.enterInt("Year Experience ", 0, 100);
+                    String professionalSkill = Input.enterString("Professional Skill ", Validator.REGEX_NOR);
+                    candidates.add(new Experience(id, fistName, lastName, birthDate, address, phone, email, type, yearExperience, professionalSkill));
+                    break;
+                case 1:
+                    String graduationDate = Input.enterString("GraduationDate");
+                    String graduationRank = Input.enterRank("Graduation", Validator.REGEX_RANK);
+                    candidates.add(new Fresher(id, fistName, lastName, birthDate, address, phone, email, type, graduationDate, graduationRank));
+                    break;
+                case 2:
+                    String major = Input.enterString("Major ", Validator.REGEX_NOR);
+                    String semester = Input.enterString("Semester", Validator.REGEX_NOR);
+                    String university = Input.enterString("University", Validator.REGEX_NOR);
+                    candidates.add(new Internship(id, fistName, lastName, birthDate, address, phone, email, type, major, semester, university));
+                    break;
             }
-            return false;
-        });
-        String fistName = Input.enterString("Fist Name ", Validator.REGEX_FULL_NAME_VN);
-        String lastName = Input.enterString("Last Name", Validator.REGEX_FULL_NAME_VN);
-        int birthDate = Input.enterInt("Birthdate ", 1900, Calendar.getInstance().get(Calendar.YEAR));
-        String address = Input.enterString("Address", Validator.REGEX_NOR);
-        String phone = Input.enterString("Phone Number ", Validator.REGEX_PHONE_NUMBER);
-        String email = Input.enterString("Email ", Validator.REGEX_EMAIL);
-        switch (type) {
-            case 0:
-                int yearExperience = Input.enterInt("Year Experience ", 0, 100);
-                String professionalSkil = Input.enterString("Professional Skill ", Validator.REGEX_NOR);
-                candidates.add(new Experience(id, fistName, lastName, birthDate, address, phone, email, type, yearExperience, professionalSkil));
+            System.out.print("Do you want to continue (Y/N): ");
+            continueAdding = Input.checkInputYN();
+            if (continueAdding && type != 0) {
                 break;
-            case 1:
-                String graduationDate = Input.enterString("GraduationDate");
-                String graduationrank = Input.enterRank("Graduation", Validator.REGEX_RANK);
-                candidates.add(new Fresher(id, fistName, lastName, birthDate, address, phone, email, type, graduationDate, graduationrank));
-                break;
-            case 2:
-                String major = Input.enterString("Major ", Validator.REGEX_NOR);
-                String semester = Input.enterString("Semester", Validator.REGEX_NOR);
-                String university = Input.enterString("University", Validator.REGEX_NOR);
-                candidates.add(new Internship(id, fistName, lastName, birthDate, address, phone, email, type, major, semester, university));
-                break;
-        }
-        System.out.print("Do you want to continue (Y/N): ");
-        if (!Input.checkInputYN()) {
-            return;
+            }
         }
     }
 

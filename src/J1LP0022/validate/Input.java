@@ -62,21 +62,18 @@ public class Input {
 
         }
     }
-    public static String enterRank(String mess, String regex) {
+    public static String enterRank(String mess, String[] validValues) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter " + mess + " Rank: ");
         String input = scanner.nextLine();
 
-        try {
-            // Kiểm tra chuỗi nhập vào có hợp lệ hay không
-            if (input.matches(regex)) {
-                throw new IllegalArgumentException("Wrong format.");
-            } else {
-                return input;
-            }
-        } catch (IllegalArgumentException e) {
-            return e.getMessage();
+        while (!Arrays.asList(validValues).contains(input)) {
+            System.out.println("Invalid rank. Please try again.");
+            System.out.print("Enter " + mess + " Rank: ");
+            input = scanner.nextLine();
         }
+
+        return input;
     }
 
     public static String enterDate(String mess) {
@@ -248,10 +245,8 @@ public class Input {
         }
     }
     public static boolean checkInputYN() {
-        // loop until user input correct
         while (true) {
             String result = sc.nextLine();
-            // check user input y/Y or n/N using regular expression
             if (result.matches(Validator.REGEX_QUESTION)) {
                 return result.equalsIgnoreCase("y");
             }
