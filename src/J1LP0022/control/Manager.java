@@ -72,6 +72,7 @@ public class Manager {
 
     }
     public void searchCandidate(){
+        printListNameCandidate();
         String name = Input.enterString("Name",Validator.REGEX_FULL_NAME);
         int typeCandidate = Input.enterInt("Type Candidate",0,2);
         int count = 0;
