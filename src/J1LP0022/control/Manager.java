@@ -1,4 +1,5 @@
 package J1LP0022.control;
+
 import J1LP0022.model.Candidate;
 import J1LP0022.model.Experience;
 import J1LP0022.model.Fresher;
@@ -8,9 +9,11 @@ import J1LP0022.validate.Validator;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.function.Predicate;
+
 /**
  * Uyen Nguyễn
- * */
+ */
 public class Manager {
     ArrayList<Candidate> candidates = new ArrayList<>();
 
@@ -25,26 +28,26 @@ public class Manager {
         });
         String fistName = Input.enterString("Fist Name ", Validator.REGEX_FULL_NAME_VN);
         String lastName = Input.enterString("Last Name", Validator.REGEX_FULL_NAME_VN);
-        int birthDate = Input.enterInt("Birthdate ",1900, Calendar.getInstance().get(Calendar.YEAR));
-        String address = Input.enterString("Address",Validator.REGEX_NOR );
+        int birthDate = Input.enterInt("Birthdate ", 1900, Calendar.getInstance().get(Calendar.YEAR));
+        String address = Input.enterString("Address", Validator.REGEX_NOR);
         String phone = Input.enterString("Phone Number ", Validator.REGEX_PHONE_NUMBER);
         String email = Input.enterString("Email ", Validator.REGEX_EMAIL);
-        switch (type){
+        switch (type) {
             case 0:
                 int yearExperience = Input.enterInt("Year Experience ", 0, 100);
                 String professionalSkil = Input.enterString("Professional Skill ", Validator.REGEX_NOR);
-                candidates.add(new Experience(id,fistName,lastName,birthDate,address,phone,email,type,yearExperience,professionalSkil));
+                candidates.add(new Experience(id, fistName, lastName, birthDate, address, phone, email, type, yearExperience, professionalSkil));
                 break;
             case 1:
                 String graduationDate = Input.enterString("GraduationDate");
-                String graduationrank = Input.enterRank("Graduation",Validator.REGEX_RANK);
-                candidates.add(new Fresher(id,fistName,lastName,birthDate,address,phone,email,type,graduationDate,graduationrank));
+                String graduationrank = Input.enterRank("Graduation", Validator.REGEX_RANK);
+                candidates.add(new Fresher(id, fistName, lastName, birthDate, address, phone, email, type, graduationDate, graduationrank));
                 break;
             case 2:
-                String major = Input.enterString("Major " ,Validator.REGEX_NOR);
+                String major = Input.enterString("Major ", Validator.REGEX_NOR);
                 String semester = Input.enterString("Semester", Validator.REGEX_NOR);
-                String university = Input.enterString("University",Validator.REGEX_NOR);
-                candidates.add(new Internship(id,fistName,lastName,birthDate,address,phone,email,type,major,semester,university));
+                String university = Input.enterString("University", Validator.REGEX_NOR);
+                candidates.add(new Internship(id, fistName, lastName, birthDate, address, phone, email, type, major, semester, university));
                 break;
         }
         System.out.print("Do you want to continue (Y/N): ");
@@ -53,25 +56,57 @@ public class Manager {
         }
     }
 
-    public void searchCandidate() {
-        printListNameCandidate();
-        String nameSearch = Input.enterString("Name",Validator.REGEX_FULL_NAME);
+
+    public ArrayList<Candidate> search(Predicate<Candidate> p) {
+        ArrayList<Candidate> rs = new ArrayList<>();
+        for (Candidate s : candidates) {
+            if (p.test(s)) {
+                rs.add(s);
+            }
+        }
+        return rs;
+
+    }
+    public void searchCandidate(){
+        String name = Input.enterString("Name",Validator.REGEX_FULL_NAME);
         int typeCandidate = Input.enterInt("Type Candidate",0,2);
         int count = 0;
-        for (Candidate candidate : candidates) {
-            if (candidate.getTypeCadidate() == typeCandidate){
-                  if(candidate.getFname().contains(nameSearch)
-                        || candidate.getLname().contains(nameSearch)) {
-                    System.out.println(candidate.toString());
+        ArrayList<Candidate> search = search(i->i.getLFName().contains(name));
+        if(search.isEmpty()){
+            System.out.println("Empty");
+        }
+        else{
+            for (Candidate candidate : candidates){
+                if(candidate.getTypeCadidate() == typeCandidate){
+                    System.out.println(search.toString());
                     count++;
                 }
             }
-
         }
-        if (count == 0) {
-            System.out.println("not found");
+        if(count==0){
+            System.out.println("Empty");
         }
     }
+
+//    public void searchCandidate() {
+//        printListNameCandidate();
+//        String nameSearch = Input.enterString("Name",Validator.REGEX_FULL_NAME);
+//        int typeCandidate = Input.enterInt("Type Candidate",0,2);
+//        int count = 0;
+//        for (Candidate candidate : candidates) {
+//            if (candidate.getTypeCadidate() == typeCandidate){
+//                  if(candidate.getFname().contains(nameSearch)
+//                        || candidate.getLname().contains(nameSearch)) {
+//                    System.out.println(candidate.toString());
+//                    count++;
+//                }
+//            }
+//
+//        }
+//        if (count == 0) {
+//            System.out.println("not found");
+//        }
+//    }
 
     public void printListNameCandidate() {
         int countExperience = 0;
@@ -83,24 +118,21 @@ public class Manager {
                 if (countExperience == 1) {
                     System.out.println("========Experience Candidate========");
                 }
-                System.out.println(candidate.getFname() + " "
-                        + candidate.getLname());
+                System.out.println(candidate.getFname()+" "+candidate.getLname());
             }
             if (candidate instanceof Fresher) {
                 countFresher++;
                 if (countFresher == 1) {
                     System.out.println("========Fresher Candidate========");
                 }
-                System.out.println(candidate.getFname() + " "
-                        + candidate.getLname());
+                System.out.println(candidate.getFname()+" "+candidate.getLname());
             }
             if (candidate instanceof Internship) {
                 countIntern++;
                 if (countIntern == 1) {
                     System.out.println("=======Internship Candidate========");
                 }
-                System.out.println(candidate.getFname() + " "
-                        + candidate.getLname());
+                System.out.println(candidate.getFname()+" "+candidate.getLname());
             }
         }
     }

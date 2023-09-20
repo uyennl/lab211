@@ -68,6 +68,10 @@ public class Candidate {
     public void setEmail(String email) {
         this.email = email;
     }
+    public String getLFName(){
+        String lfname = lname+fname;
+        return lfname;
+    }
 
     public int getTypeCadidate() {
         return typeCadidate;
