@@ -10,9 +10,11 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.regex.Pattern;
+
 /**
- * Uyen Nguyễn
- * */
+ * @author UyenNguyễn
+ */
 public class Input {
     Input() {
     }
@@ -21,7 +23,8 @@ public class Input {
     static Scanner sc = new Scanner(System.in);
     private static final String ERR_MESSAGE = "Wrong Input ! Please Re-enter ";
     private static final String REGEX_NOT_MATCH = "Input Not Valid ! Please Re-enter ";
-
+private  static final String ReGEX_MESS_YN = "Nhập y/Y hoặc n/N: ";
+    private  static final String ReGEX_MESS_UD = "Nhập u/U hoặc d/D: ";
     public static String enterString(String mess) {
         String str;
         while (true) {
@@ -40,7 +43,7 @@ public class Input {
         }
     }
 
-     public static String enterString(String mess, String regex) {
+    public static String enterString(String mess, String regex) {
         String str;
         while (true) {
             System.out.println("Enter " + mess + " :");
@@ -62,6 +65,7 @@ public class Input {
 
         }
     }
+
     public static String enterRank(String mess, String regex) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter " + mess + " Rank: ");
@@ -121,6 +125,39 @@ public class Input {
 
         }
     }
+//    static public String enterHadString(String mess, String regex, Predicate<String> duplicate) {
+//        String str;
+//        while (true) {
+//            System.out.println("Enter " + mess + " :");
+//            try {
+//                str = sc.nextLine().trim();
+//
+//            } catch (NoSuchElementException e) {
+//
+//                System.out.println(ERR_MESSAGE);
+//                continue;
+//            }
+//
+//            boolean isTrue = Validator.checkRegex(str, regex);
+//            if (isTrue) {
+//                if (!duplicate.test(str)) {
+//                    return str;
+//                } else {
+//                    if(checkInputYN("Enter y/Y to continue, n/N for back to screen.",Validator.REGEX_YN)){
+//                        return str;
+//                    }
+//                    else
+//                        break;
+//
+//                }
+//            } else {
+//                System.out.println(REGEX_NOT_MATCH);
+//            }
+//
+//        }
+//
+//return null;
+//    }
 
     public static int enterInt(String mess, boolean check, Predicate<Integer> duplicate) {
         int intVar;
@@ -150,7 +187,7 @@ public class Input {
         }
     }
 
-    public static int enterInt(String mess, int min,int max) {
+    public static int enterInt(String mess, int min, int max) {
         int intVar;
         while (true) {
             System.out.println("Enter " + mess + " :");
@@ -161,15 +198,15 @@ public class Input {
                 System.out.println(ERR_MESSAGE);
                 continue;
             }
-                if (intVar < min && intVar >max) {
-                    System.out.println(mess + " must greater than " + min+ " must less than " + max );
-                } else {
+            if (intVar < min || intVar > max) {
+                System.out.println(mess + " must greater than " + min + " must less than " + max);
+            } else {
 
-                    return intVar;
+                return intVar;
 
-                }
             }
         }
+    }
 
 
     public static float enterFloat(String Mess, boolean check) {
@@ -247,13 +284,34 @@ public class Input {
             }
         }
     }
-    public static boolean checkInputYN() {
-        // loop until user input correct
+
+//    public static boolean checkInputYN() {
+//        while (true) {
+//            String result = sc.nextLine();
+//            if (result.matches(Validator.REGEX_QUESTION)) {
+//                return result.equalsIgnoreCase("y");
+//            }
+//            System.err.println("Please input y/Y or n/N.");
+//            System.out.print("Enter again: ");
+//        }
+//    }
+public static String checkKey(String mess,String pattern) {
+    while (true) {
+        System.out.print(mess);
+        String userInput = sc.nextLine();
+        if (Pattern.matches(pattern, userInput)) {
+            return userInput;
+        } else {
+            System.out.println("Đầu vào không hợp lệ. Vui lòng nhập lại.");
+        }
+    }
+}
+    public static boolean checkInputYN(String mes,String check,String regex) {
         while (true) {
+            System.out.println(mes);
             String result = sc.nextLine();
-            // check user input y/Y or n/N using regular expression
-            if (result.matches(Validator.REGEX_QUESTION)) {
-                return result.equalsIgnoreCase("y");
+            if (result.matches(check)) {
+                return result.equalsIgnoreCase(regex);
             }
             System.err.println("Please input y/Y or n/N.");
             System.out.print("Enter again: ");
