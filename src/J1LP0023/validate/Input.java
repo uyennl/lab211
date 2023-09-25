@@ -1,7 +1,4 @@
 package J1LP0023.validate;
-
-import J1LP0022.validate.Validator;
-
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -13,15 +10,16 @@ import java.util.function.Predicate;
  * Uyen Nguyễn
  * */
 public class Input {
-    Input() {
+   public Input() {
     }
 
     ;
     static Scanner sc = new Scanner(System.in);
-    private static final String ERR_MESSAGE = "Wrong Input ! Please Re-enter ";
-    private static final String REGEX_NOT_MATCH = "Input Not Valid ! Please Re-enter ";
+    private final String ERR_MESSAGE = "Wrong Input ! Please Re-enter ";
+    private final String REGEX_NOT_MATCH = "Input Not Valid ! Please Re-enter ";
+    Validator validator = new Validator();
 
-    public static String enterString(String mess) {
+    public String enterString(String mess) {
         String str;
         while (true) {
             System.out.println("Enter " + mess + " :");
@@ -39,7 +37,7 @@ public class Input {
         }
     }
 
-     public static String enterString(String mess, String regex) {
+     public String enterString(String mess, String regex) {
         String str;
         while (true) {
             System.out.println("Enter " + mess + " :");
@@ -52,7 +50,7 @@ public class Input {
                 continue;
             }
 
-            boolean isTrue = Validator.checkRegex(str, regex);
+            boolean isTrue = validator.checkRegex(str, regex);
             if (isTrue) {
                 return str;
             } else {
@@ -61,7 +59,7 @@ public class Input {
 
         }
     }
-    public static String enterRank(String mess, String[] validValues) {
+    public String enterRank(String mess, String[] validValues) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter " + mess + " Rank: ");
         String input = scanner.nextLine();
@@ -75,12 +73,12 @@ public class Input {
         return input;
     }
 
-    public static String enterDate(String mess) {
+    public String enterDate(String mess) {
         while (true) {
             System.out.println("Enter " + mess + " :");
             try {
                 String dateStr = sc.nextLine().trim();
-                if (Validator.isValidDate(dateStr)) {
+                if (validator.isValidDate(dateStr)) {
                     return dateStr;
                 }
             } catch (NoSuchElementException e) {
@@ -91,7 +89,7 @@ public class Input {
         }
     }
 
-    static public String enterString(String mess, String regex, Predicate<String> duplicate) {
+    public String enterString(String mess, String regex, Predicate<String> duplicate) {
         String str;
         while (true) {
             System.out.println("Enter " + mess + " :");
@@ -104,7 +102,7 @@ public class Input {
                 continue;
             }
 
-            boolean isTrue = Validator.checkRegex(str, regex);
+            boolean isTrue = validator.checkRegex(str, regex);
             if (isTrue) {
                 if (!duplicate.test(str)) {
                     return str;
@@ -118,7 +116,7 @@ public class Input {
         }
     }
 
-    public static int enterInt(String mess, boolean check, Predicate<Integer> duplicate) {
+    public int enterInt(String mess, boolean check, Predicate<Integer> duplicate) {
         int intVar;
         while (true) {
             System.out.println("Enter " + mess + " :");
@@ -146,7 +144,7 @@ public class Input {
         }
     }
 
-    public static int enterInt(String mess, int min,int max) {
+    public int enterInt(String mess, int min,int max) {
         int intVar;
         while (true) {
             System.out.println("Enter " + mess + " :");
@@ -168,7 +166,7 @@ public class Input {
         }
 
 
-    public static float enterFloat(String Mess, boolean check) {
+    public float enterFloat(String Mess, boolean check) {
         float floatVar;
         while (true) {
             System.out.println("Enter " + Mess + " :");
@@ -191,13 +189,13 @@ public class Input {
         }
     }
 
-    public static LocalDate enterDate(String mess, String pattern) {
+    public LocalDate enterDate(String mess, String pattern) {
         LocalDate result;
         while (true) {
             System.out.println("Enter " + mess + ":");
             try {
                 String dateStr = sc.nextLine().trim();
-                if (!Validator.isValidDate(dateStr)) {
+                if (!validator.isValidDate(dateStr)) {
                     throw new ParseException("Invalid Date Format", 0);
                 }
 
@@ -219,7 +217,7 @@ public class Input {
         }
     }
 
-    public static long enterLong(String mess, boolean check) {
+    public long enterLong(String mess, boolean check) {
         long longVar;
         while (true) {
             System.out.println("Enter " + mess + " :");
@@ -243,11 +241,11 @@ public class Input {
             }
         }
     }
-    public static boolean checkInputYN() {
+    public boolean checkInputYN() {
         while (true) {
             String result = sc.nextLine();
-            if (result.matches(Validator.REGEX_QUESTION)) {
-                return result.equalsIgnoreCase("n");
+            if (result.matches(validator.REGEX_YN)) {
+                return result.equalsIgnoreCase("y");
             }
             System.err.println("Please input y/Y or n/N.");
             System.out.print("Enter again: ");

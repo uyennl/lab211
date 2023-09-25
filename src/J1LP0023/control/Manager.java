@@ -12,6 +12,8 @@ import java.util.List;
 public class Manager {
     ArrayList<Fruit> fruits = new ArrayList<>();
     HashMap<String, List<Fruit>> hashTable = new HashMap<>();
+    Input input = new Input();
+    Validator validator = new Validator();
     void getMenu() {
         int choice;
         do {
@@ -34,7 +36,7 @@ public class Manager {
     }
     void createFruit() {
         while (true) {
-            String id = Input.enterString("Id", Validator.REGEX_ID, (i) -> {
+            String id = input.enterString("Id", validator.REGEX_ID, (i) -> {
                 for (Fruit f : fruits) {
                     if (f.getId().equals(i)) {
                         return true;
@@ -42,13 +44,13 @@ public class Manager {
                 }
                 return false;
             });
-            String name = Input.enterString("Fruit name", Validator.REGEX_NOSPECIAL);
-            int price = Input.enterInt("Price", 0, 1000000);
-            int quantyti = Input.enterInt("Quantity", 0, 100);
-            String origin = Input.enterString("Origin");
+            String name = input.enterString("Fruit name", validator.REGEX_NOSPECIAL);
+            int price = input.enterInt("Price", 0, 1000000);
+            int quantyti = input.enterInt("Quantity", 0, 100);
+            String origin = input.enterString("Origin");
             fruits.add(new Fruit(id, name, price, origin, quantyti));
             System.out.println("Enter y/y to continue, n/N to back to screen");
-       if(Input.checkInputYN()){
+       if(input.checkInputYN()){
            continue;
        }
        else break;
@@ -67,17 +69,17 @@ public class Manager {
     void shopping(){
         List<Fruit> listBuy = new ArrayList<>();
         displayListFruit();
-        String nameCustomer = Input.enterString("Name Customer", Validator.REGEX_NOSPECIAL);
+        String nameCustomer = input.enterString("Name Customer", validator.REGEX_NOSPECIAL);
 
         while(true){
-            int select = Input.enterInt("item you want order",1,fruits.size());
+            int select = input.enterInt("item you want order",1,fruits.size());
             Fruit fruitNum = fruits.get(select-1);
             System.out.println("You selected: "+ fruitNum.getName());
-            int quantity = Input.enterInt("Quantyti",0,100);
+            int quantity = input.enterInt("Quantyti",0,100);
             fruitNum.setQuantity(quantity);
             listBuy.add(fruitNum);
             System.out.println("Do you want to order now (Y|N)");
-            if(Input.checkInputYN()){
+            if(!input.checkInputYN()){
                 continue;
             }
             else{
