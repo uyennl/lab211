@@ -8,9 +8,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- *
- * @author THAYCACAC
- */
+ * Uyen Nguyễn
+ * */
 public class Validate {
 
     private final  Scanner in = new Scanner(System.in);

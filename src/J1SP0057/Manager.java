@@ -8,9 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- *
- * @author THAYCACAC
- */
+ * Uyen Nguyễn
+ * */
 public class Manager {
        Validate  validate = new Validate();
     //display menu

@@ -5,6 +5,9 @@ import J1SP0055.validate.Input;
 import J1SP0055.validate.Validator;
 
 import java.util.HashMap;
+/**
+ * Uyen Nguyễn
+ * */
 
 public class Manager {
     public Manager() {

@@ -1,5 +1,7 @@
 package J1SP0055.model;
-
+/**
+ * Uyen Nguyễn
+ * */
 public class Doctor {
     private String name;
     private String specialization;
