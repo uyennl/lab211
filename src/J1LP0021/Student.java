@@ -1,9 +1,8 @@
 package J1LP0021;
 
 /**
- *@author UyenNguyễn
- *
- * */
+ * @author UyenNguyễn
+ */
 public class Student {
     private String id;
     private String name;

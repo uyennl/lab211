@@ -4,24 +4,25 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 /**
- *@author UyenNguyễn
- *
- * */
+ * @author UyenNguyễn
+ */
 public class Display {
-void displayMenu(){
-    System.out.println("WELCOME TO STUDENT MANAGEMENT");
-    System.out.println("1. Create");
-    System.out.println("2. Find and Sort");
-    System.out.println("3. Update/Delete");
-    System.out.println("4. Report");
-    System.out.println("5. Exit");
-}
-void displayCouseMenu(){
-    System.out.println("COURSE");
-    System.out.println("1. Java");
-    System.out.println("2. .Net");
-    System.out.println("3. C/C++");
+    void displayMenu() {
+        System.out.println("WELCOME TO STUDENT MANAGEMENT");
+        System.out.println("1. Create");
+        System.out.println("2. Find and Sort");
+        System.out.println("3. Update/Delete");
+        System.out.println("4. Report");
+        System.out.println("5. Exit");
     }
+
+    void displayCouseMenu() {
+        System.out.println("COURSE");
+        System.out.println("1. Java");
+        System.out.println("2. .Net");
+        System.out.println("3. C/C++");
+    }
+
     void displayList(ArrayList<Student> students, String displayType) {
         switch (displayType) {
             case "student_list":

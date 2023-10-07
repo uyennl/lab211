@@ -6,7 +6,6 @@
 package J1LP0025.TextNormalization;
 
 
-
 import J1LP0025.ReadWriteFile.ReadWriteFile;
 import J1LP0025.TextNormalization.normalizer.*;
 
@@ -18,6 +17,7 @@ import java.util.StringTokenizer;
 /**
  * Text normalizer
  * This has normalizer "There are no blank lines between line"
+ *
  * @author uyen
  */
 public class TextNormalizer {
@@ -44,26 +44,26 @@ public class TextNormalizer {
     public String normalize(String source) {
         StringTokenizer token = new StringTokenizer(source, "\n");
         String normalized = new String();
-        
-        while(token.hasMoreTokens())
-        {
+
+        while (token.hasMoreTokens()) {
             String line = token.nextToken().trim();
-            if(line.isEmpty())
+            if (line.isEmpty())
                 continue;
-            
+
             for (INormalizable normalizer : this.normalizers) {
                 line = normalizer.normalize(line);
             }
-            
+
             normalized += (line + '\n');
         }
-        
+
         return normalized.substring(0, normalized.length() - 1); //remove \n at the end
     }
-    public void  normalizerText(){
+
+    public void normalizerText() {
         TextNormalizer normalizer = new TextNormalizer();
 
-        normalizer.addNormalizer( new OnlySpaceBetweenWordsNormalizer());
+        normalizer.addNormalizer(new OnlySpaceBetweenWordsNormalizer());
         normalizer.addNormalizer(new OnlySpaceAfterMarkNormalizer(","));
         normalizer.addNormalizer(new OnlySpaceAfterMarkNormalizer(":"));
         normalizer.addNormalizer(new UppercaseFirstCharOfSentenceNormalizer());
@@ -75,7 +75,7 @@ public class TextNormalizer {
 
         System.out.print("READING input.txt...");
         try {
-            content = readWriteFile.readFile(BASE_PATH+READ_PATH);
+            content = readWriteFile.readFile(BASE_PATH + READ_PATH);
         } catch (IOException ex) {
             System.out.println("FAIL");
             System.out.println("ERROR: " + ex.getMessage());
@@ -89,7 +89,7 @@ public class TextNormalizer {
 
         System.out.println("WRITING CONTENT TO output.txt");
         try {
-            readWriteFile.writeFile(normalized, BASE_PATH+WRITE_PATH);
+            readWriteFile.writeFile(normalized, BASE_PATH + WRITE_PATH);
         } catch (IOException ex) {
             System.out.println("FAIL.");
             System.out.println("ERROR: " + ex.getMessage());

@@ -1,6 +1,7 @@
-package view;
+package J1SP0052.view;
 
-import validate.Validate;
+
+import J1SP0052.validate.Validate;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -51,6 +52,9 @@ public abstract class Menu<T> {
             execute(n);
             if(n > mChon.size() || n == 0) break;
         }
+    }
+
+    public class Validation {
     }
 
 }

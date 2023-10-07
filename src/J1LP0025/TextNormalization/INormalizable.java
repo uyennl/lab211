@@ -6,9 +6,9 @@
 package J1LP0025.TextNormalization;
 
 /**
- *
  * @author Uyen
  */
 public interface INormalizable {
     public String normalize(String source);
+
 }

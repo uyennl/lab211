@@ -23,8 +23,9 @@ public class Input {
     static Scanner sc = new Scanner(System.in);
     private static final String ERR_MESSAGE = "Wrong Input ! Please Re-enter ";
     private static final String REGEX_NOT_MATCH = "Input Not Valid ! Please Re-enter ";
-private  static final String ReGEX_MESS_YN = "Nhập y/Y hoặc n/N: ";
-    private  static final String ReGEX_MESS_UD = "Nhập u/U hoặc d/D: ";
+    private static final String ReGEX_MESS_YN = "Nhập y/Y hoặc n/N: ";
+    private static final String ReGEX_MESS_UD = "Nhập u/U hoặc d/D: ";
+
     public static String enterString(String mess) {
         String str;
         while (true) {
@@ -285,7 +286,7 @@ private  static final String ReGEX_MESS_YN = "Nhập y/Y hoặc n/N: ";
         }
     }
 
-//    public static boolean checkInputYN() {
+    //    public static boolean checkInputYN() {
 //        while (true) {
 //            String result = sc.nextLine();
 //            if (result.matches(Validator.REGEX_QUESTION)) {
@@ -295,18 +296,19 @@ private  static final String ReGEX_MESS_YN = "Nhập y/Y hoặc n/N: ";
 //            System.out.print("Enter again: ");
 //        }
 //    }
-public static String checkKey(String mess,String pattern) {
-    while (true) {
-        System.out.print(mess);
-        String userInput = sc.nextLine();
-        if (Pattern.matches(pattern, userInput)) {
-            return userInput;
-        } else {
-            System.out.println("Đầu vào không hợp lệ. Vui lòng nhập lại.");
+    public static String checkKey(String mess, String pattern) {
+        while (true) {
+            System.out.print(mess);
+            String userInput = sc.nextLine();
+            if (Pattern.matches(pattern, userInput)) {
+                return userInput;
+            } else {
+                System.out.println("Đầu vào không hợp lệ. Vui lòng nhập lại.");
+            }
         }
     }
-}
-    public static boolean checkInputYN(String mes,String check,String regex) {
+
+    public static boolean checkInputYN(String mes, String check, String regex) {
         while (true) {
             System.out.println(mes);
             String result = sc.nextLine();

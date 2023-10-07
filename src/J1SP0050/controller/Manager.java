@@ -7,9 +7,15 @@ import J1SP0050.view.Menu;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+/**
+ * @author UyenNguyễn
+ */
 public class Manager {
+    public Manager() {
+    }
     Menu menu = new Menu();
+
+
     Input input = new Input();
     final ArrayList<Float> LIST_FLOAT = new ArrayList<>();
 
@@ -135,11 +141,11 @@ public class Manager {
         return listFloat;
     }
 
-    public static boolean isOdd(float number) {
+    public boolean isOdd(float number) {
         return (number % 2) != 0;
     }
 
-    public static boolean isPerfectSquare(double number) {
+    public boolean isPerfectSquare(double number) {
         return Math.sqrt(number) == Math.floor(Math.sqrt(number));
     }
 }

@@ -1,4 +1,4 @@
-package J1SP0050.view;
+package J1SP0050;
 
 import J1SP0050.controller.Manager;
 /**

@@ -1,8 +1,8 @@
 package J1LP0021;
+
 /**
- *@author UyenNguyễn
- *
- * */
+ * @author UyenNguyễn
+ */
 public class Report {
     private String name;
     private String course;

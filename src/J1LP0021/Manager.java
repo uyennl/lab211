@@ -90,7 +90,7 @@ public class Manager {
                 String name;
                 if (students.size() >= 10) {
                     System.out.print("Do you want to continue (Y/N): ");
-                    boolean continueAdding = Input.checkInputYN("Enter y/Y to continue, n/N for back to screen.", Validator.REGEX_YN,"n");
+                    boolean continueAdding = Input.checkInputYN("Enter y/Y to continue, n/N for back to screen.", Validator.REGEX_YN, "n");
                     if (continueAdding) {
                         break;
                     }
@@ -106,7 +106,7 @@ public class Manager {
                 }
                 if (count > 0) {
                     System.out.print("Do you want to continue (Y/N): ");
-                    Boolean continueAdding = Input.checkInputYN("Enter y/Y to continue, n/N for back to screen.", Validator.REGEX_YN,"n");
+                    Boolean continueAdding = Input.checkInputYN("Enter y/Y to continue, n/N for back to screen.", Validator.REGEX_YN, "n");
                     if (continueAdding) {
                         break;
                     }
@@ -166,46 +166,45 @@ public class Manager {
         for (Student st : students) {
             if (st.getId().equals(inputID)) {
                 count++;
-            }}
-            if (inputID.equals(updatingStudent.getId())) {
-                isUsingStudent = true;
-            }
-
-            if (isUsingStudent) {
-                inputName = updatingStudent.getName();
-            } else {
-                if (count >= 0) {
-                    inputName = students.get(count).getName();
-                } else {
-                    inputName = Input.enterString("Enter name: ", Validator.REGEX_FULL_NAME_VN);
-                }
-            }
-            inputSemester = Input.enterString("Semester: ", Validator.REGEX_NOSPECIAL);
-            inputCourse = getCourse();
-
-            studentCourse = updatingStudent.getName();
-            studentSemester = updatingStudent.getSemester();
-
-            if (isUsingStudent && inputSemester.equals(studentSemester)
-                    && inputCourse.equals(studentCourse)) {
-
-                System.out.println("Update student successfully !");
-            } else {
-
-                if (!isCorrect(inputID, inputSemester, inputCourse)) {
-                    updatingStudent.setId(inputID);
-                    updatingStudent.setName(inputName);
-                    updatingStudent.setSemester(inputSemester);
-                    updatingStudent.setName(inputCourse);
-                    System.out.println("Update student successfully !");
-                } else {
-                    System.out.println("These input information above is collided "
-                            + "with another record !");
-                }
             }
         }
+        if (inputID.equals(updatingStudent.getId())) {
+            isUsingStudent = true;
+        }
 
+        if (isUsingStudent) {
+            inputName = updatingStudent.getName();
+        } else {
+            if (count >= 0) {
+                inputName = students.get(count).getName();
+            } else {
+                inputName = Input.enterString("Enter name: ", Validator.REGEX_FULL_NAME_VN);
+            }
+        }
+        inputSemester = Input.enterString("Semester: ", Validator.REGEX_NOSPECIAL);
+        inputCourse = getCourse();
 
+        studentCourse = updatingStudent.getName();
+        studentSemester = updatingStudent.getSemester();
+
+        if (isUsingStudent && inputSemester.equals(studentSemester)
+                && inputCourse.equals(studentCourse)) {
+
+            System.out.println("Update student successfully !");
+        } else {
+
+            if (!isCorrect(inputID, inputSemester, inputCourse)) {
+                updatingStudent.setId(inputID);
+                updatingStudent.setName(inputName);
+                updatingStudent.setSemester(inputSemester);
+                updatingStudent.setName(inputCourse);
+                System.out.println("Update student successfully !");
+            } else {
+                System.out.println("These input information above is collided "
+                        + "with another record !");
+            }
+        }
+    }
 
 
     private void deleteStudent(Student deletingStudent) {

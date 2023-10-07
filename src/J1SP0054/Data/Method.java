@@ -4,7 +4,7 @@ import J1SP0054.Menu.Validation;
 import java.util.ArrayList;
 
 
-public class Method {
+public class Method{
     public Validation val = new Validation();
 
     //allow user create contact

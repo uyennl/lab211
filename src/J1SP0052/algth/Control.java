@@ -1,7 +1,7 @@
 package J1SP0052.algth;
 
 import J1SP0052.data.EAC;
-import view.Menu;
+import J1SP0052.view.Menu;
 import java.util.ArrayList;
 
 public class Control extends Menu<String> {

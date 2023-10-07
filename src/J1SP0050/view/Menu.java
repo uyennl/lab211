@@ -1,7 +1,9 @@
 package J1SP0050.view;
 
 import java.util.Scanner;
-
+/**
+ * @author UyenNguyễn
+ */
 public class Menu {
     public Menu() {
     }
