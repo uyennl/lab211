@@ -90,7 +90,7 @@ public class Manager {
         Calendar calendar = Calendar.getInstance();
         return dateFormat.format(calendar.getTime());
     }
-    public static Worker getWorkerByCode(ArrayList<Worker> lw, String id) {
+    public  Worker getWorkerByCode(ArrayList<Worker> lw, String id) {
         for (Worker worker : lw) {
             if (id.equalsIgnoreCase(worker.getId())) {
                 return worker;
