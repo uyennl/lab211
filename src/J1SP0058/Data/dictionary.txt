@@ -1,0 +1,7 @@
+Cat, Con mèo
+Dog, Con Chó
+Pig, Con heo
+Chicken, Con gà
+Snake, Con rắn
+Cow, Con Bò
+Bitch, Con đĩ
