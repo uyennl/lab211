@@ -45,13 +45,13 @@ public class HouseHoldManagement {
 
     public String remainingAmountOfTrash(int total, String garbage) {
         int leftover_garbage = (total + Integer.parseInt(garbage) - 10000);
-        System.out.println("Amount òf trash: " + leftover_garbage);
+        System.out.println("Amount of trash: " + leftover_garbage);
         return String.valueOf(leftover_garbage);
     }
 
     public void calculateCost(Truck truck) {
         int cost = (truck.getTime() * 120000) / 60 + (truck.getCount() * 57000);
-        System.out.println("Cost: " + cost);
         truck.setCost(cost);
+        System.out.println("Cost: "+ truck.getCost()+"VND");
     }
 }
